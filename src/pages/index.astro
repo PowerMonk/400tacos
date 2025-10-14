@@ -1,25 +1,194 @@
 ---
-import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
+import "../styles/global.css";
+import ProgressBar from "../components/ProgressBar.astro";
+import ParticipanteCard from "../components/ParticipanteCard.astro";
+import StatCard from "../components/StatCard.astro";
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+// Importar datos
+import participantesData from "../data/participantes.json";
+
+const { participantes, meta } = participantesData;
+
+// Calcular estadísticas
+const totalRecaudado = participantes.reduce((sum, p) => sum + p.pagado, 0);
+const participantesCompletos = participantes.filter(
+  (p) => p.pagoCompleto
+).length;
+const faltantePorRecaudar = meta.objetivoTotal - totalRecaudado;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/taco.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>400tacos - Convivio de Tacos</title>
+    <meta
+      name="description"
+      content="Sitio para organizar el convivio de 400 tacos de la clase"
+    />
+  </head>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
+  <body class="bg-gradient-to-br from-orange-50 to-yellow-50 min-h-screen">
+    <!-- Banner Principal -->
+    <header
+      class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-12 shadow-lg"
+    >
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-6xl font-bold mb-4 drop-shadow-lg">400tacos</h1>
+        <p class="text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
+          400 tacos, toda la clase, y los profes<br />
+          <span class="text-2xl font-semibold">10 pesos por taco</span>
+        </p>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+      <!-- Barra de Progreso -->
+      <section class="mb-12">
+        <ProgressBar
+          montoRecaudado={totalRecaudado}
+          objetivoTotal={meta.objetivoTotal}
+        />
+      </section>
+
+      <!-- Participantes -->
+      <section class="mb-12">
+        <div
+          class="flex flex-col sm:flex-row justify-between items-center mb-6"
+        >
+          <h2 class="text-3xl font-bold text-gray-800 mb-4 sm:mb-0">
+            Participantes
+          </h2>
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Buscar participante..."
+              id="searchInput"
+              class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+            />
+            <div class="absolute left-3 top-1/2 transform -translate-y-1/2">
+              <svg
+                class="w-4 h-4 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          id="participantesGrid"
+        >
+          {
+            participantes.map((participante) => (
+              <ParticipanteCard participante={participante} />
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Estadísticas -->
+      <section>
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+          Estadísticas
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <StatCard
+            titulo="Total Participantes"
+            valor={participantes.length}
+            icono="👥"
+            color="blue"
+          />
+          <StatCard
+            titulo="Han Pagado Completo"
+            valor={participantesCompletos}
+            icono="✅"
+            color="green"
+          />
+          <StatCard
+            titulo="Faltante por Recaudar"
+            valor={`$${faltantePorRecaudar.toLocaleString()}`}
+            icono="💰"
+            color={faltantePorRecaudar > 0 ? "red" : "green"}
+          />
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-16">
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-gray-400">
+          (A los profes no se les dió un monto de cooperación, no sean mamones)
+        </p>
+        <p class="text-gray-400">
+          Los errores que falten ya luego los cambio amores
+        </p>
+        <p class="text-gray-400">Verguiza al que no se los acabe</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript para búsqueda -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById(
+          "searchInput"
+        ) as HTMLInputElement;
+        const participantesGrid = document.getElementById("participantesGrid");
+
+        if (!searchInput || !participantesGrid) return;
+
+        const participanteCards =
+          participantesGrid.querySelectorAll("[data-nombre]");
+
+        searchInput.addEventListener("input", function () {
+          const searchTerm = this.value.toLowerCase().trim();
+
+          participanteCards.forEach((card) => {
+            const htmlCard = card as HTMLElement;
+            const nombre = htmlCard.dataset.nombre;
+
+            if (!nombre) return;
+
+            const shouldShow = nombre.includes(searchTerm);
+
+            if (shouldShow) {
+              htmlCard.style.display = "block";
+              htmlCard.classList.add("animate-fade-in");
+            } else {
+              htmlCard.style.display = "none";
+              htmlCard.classList.remove("animate-fade-in");
+            }
+          });
+        });
+      });
+    </script>
+
+    <style>
+      .animate-fade-in {
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </body>
 </html>

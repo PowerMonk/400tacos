@@ -1,0 +1,81 @@
+{
+  "participantes": [
+    {
+      "id": 1,
+      "nombre": "Maestra Magda",
+      "tipo": "profesor",
+      "cooperacion": 500,
+      "pagado": 500,
+      "debe": 0,
+      "pagoCompleto": true
+    },
+    {
+      "id": 2,
+      "nombre": "Ariadna",
+      "tipo": "estudiante",
+      "tacos": 5,
+      "debe": 50,
+      "pagado": 50,
+      "pagoCompleto": true
+    },
+    {
+      "id": 3,
+      "nombre": "Sergio",
+      "tipo": "estudiante",
+      "tacos": 20,
+      "debe": 200,
+      "pagado": 200,
+      "pagoCompleto": true
+    },
+    {
+      "id": 4,
+      "nombre": "Pedro",
+      "tipo": "estudiante",
+      "tacos": 15,
+      "debe": 150,
+      "pagado": 150,
+      "pagoCompleto": true
+    },
+    {
+      "id": 5,
+      "nombre": "James",
+      "tipo": "estudiante",
+      "tacos": 20,
+      "debe": 200,
+      "pagado": 200,
+      "pagoCompleto": true
+    },
+    {
+      "id": 6,
+      "nombre": "Armando",
+      "tipo": "estudiante",
+      "tacos": 20,
+      "debe": 200,
+      "pagado": 200,
+      "pagoCompleto": true
+    },
+    {
+      "id": 7,
+      "nombre": "Miguel",
+      "tipo": "estudiante",
+      "tacos": 10,
+      "debe": 100,
+      "pagado": 100,
+      "pagoCompleto": true
+    },
+    {
+      "id": 8,
+      "nombre": "Ramses",
+      "tipo": "estudiante",
+      "tacos": 15,
+      "debe": 150,
+      "pagado": 150,
+      "pagoCompleto": true
+    }
+  ],
+  "meta": {
+    "objetivoTotal": 4000,
+    "precioPorTaco": 10,
+    "totalTacos": 400
+  }
+}

@@ -1,0 +1,91 @@
+---
+interface Props {
+  participante: {
+    id: number;
+    nombre: string;
+    tipo: string;
+    debe: number;
+    pagado: number;
+    pagoCompleto: boolean;
+    tacos?: number;
+    cooperacion?: number;
+  };
+}
+
+const { participante } = Astro.props;
+const faltante = participante.debe - participante.pagado;
+---
+
+<div
+  class={`bg-white rounded-lg shadow-md p-4 transition-all duration-300 hover:shadow-lg ${
+    participante.pagoCompleto
+      ? "border-2 border-green-500 bg-green-50"
+      : "border border-gray-200"
+  }`}
+  data-nombre={participante.nombre.toLowerCase()}
+>
+  <div class="flex justify-between items-start mb-3">
+    <div>
+      <h3 class="font-bold text-lg text-gray-800">{participante.nombre}</h3>
+      {
+        participante.tipo === "profesor" && (
+          <span class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full mt-1">
+            Profesor
+          </span>
+        )
+      }
+      {
+        participante.tipo === "estudiante" && participante.tacos && (
+          <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full mt-1">
+            {participante.tacos} tacos
+          </span>
+        )
+      }
+    </div>
+    {
+      participante.pagoCompleto && (
+        <div class="text-green-500">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="space-y-2">
+    {
+      participante.tipo === "profesor" ? (
+        <div>
+          <p class="text-sm text-gray-600">
+            Cooperación:{" "}
+            <span class="font-semibold text-green-600">
+              ${participante.cooperacion}
+            </span>
+          </p>
+        </div>
+      ) : (
+        <div>
+          <p class="text-sm text-gray-600">
+            Debe: <span class="font-semibold">${participante.debe}</span>
+          </p>
+          <p class="text-sm text-gray-600">
+            Pagado:{" "}
+            <span class="font-semibold text-green-600">
+              ${participante.pagado}
+            </span>
+          </p>
+          {!participante.pagoCompleto && (
+            <p class="text-sm text-red-600">
+              Faltante: <span class="font-semibold">${faltante}</span>
+            </p>
+          )}
+        </div>
+      )
+    }
+  </div>
+</div>

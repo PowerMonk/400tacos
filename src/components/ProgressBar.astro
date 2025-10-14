@@ -1,0 +1,32 @@
+---
+interface Props {
+  montoRecaudado: number;
+  objetivoTotal: number;
+}
+
+const { montoRecaudado, objetivoTotal } = Astro.props;
+const porcentaje = Math.min((montoRecaudado / objetivoTotal) * 100, 100);
+---
+
+<div class="w-full max-w-4xl mx-auto mb-8">
+  <div
+    class="bg-gray-200 rounded-full h-8 relative overflow-hidden shadow-inner"
+  >
+    <div
+      class="bg-gradient-to-r from-green-500 to-emerald-600 h-full rounded-full transition-all duration-1000 ease-out"
+      style={`width: ${porcentaje}%`}
+    >
+    </div>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <span class="text-sm font-bold text-gray-700 drop-shadow-sm">
+        ${montoRecaudado.toLocaleString()} / ${objetivoTotal.toLocaleString()}
+      </span>
+    </div>
+  </div>
+  <div class="text-center mt-3">
+    <span class="text-2xl font-bold text-green-600"
+      >{porcentaje.toFixed(1)}%</span
+    >
+    <span class="text-gray-600 ml-2">recaudado</span>
+  </div>
+</div>
