@@ -71,6 +71,15 @@
       "debe": 150,
       "pagado": 150,
       "pagoCompleto": true
+    },
+    {
+      "id": 9,
+      "nombre": "Profe Zacek",
+      "tipo": "profesor",
+      "cooperacion": 100,
+      "pagado": 100,
+      "debe": 0,
+      "pagoCompleto": true
     }
   ],
   "meta": {
