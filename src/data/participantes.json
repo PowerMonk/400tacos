@@ -80,6 +80,33 @@
       "pagado": 100,
       "debe": 0,
       "pagoCompleto": true
+    },
+    {
+      "id": 10,
+      "nombre": "Iniesta",
+      "tipo": "estudiante",
+      "tacos": 15,
+      "debe": 150,
+      "pagado": 150,
+      "pagoCompleto": true
+    },
+    {
+      "id": 11,
+      "nombre": "Jorge",
+      "tipo": "estudiante",
+      "tacos": 10,
+      "debe": 100,
+      "pagado": 100,
+      "pagoCompleto": true
+    },
+    {
+      "id": 12,
+      "nombre": "Jafeish",
+      "tipo": "estudiante",
+      "tacos": 10,
+      "debe": 100,
+      "pagado": 100,
+      "pagoCompleto": true
     }
   ],
   "meta": {
