@@ -107,6 +107,33 @@
       "debe": 100,
       "pagado": 100,
       "pagoCompleto": true
+    },
+    {
+      "id": 13,
+      "nombre": "Jacinto",
+      "tipo": "estudiante",
+      "tacos": 10,
+      "debe": 100,
+      "pagado": 100,
+      "pagoCompleto": true
+    },
+    {
+      "id": 14,
+      "nombre": "Iván",
+      "tipo": "estudiante",
+      "tacos": 8,
+      "debe": 80,
+      "pagado": 80,
+      "pagoCompleto": true
+    },
+    {
+      "id": 15,
+      "nombre": "Everardo",
+      "tipo": "estudiante",
+      "tacos": 8,
+      "debe": 80,
+      "pagado": 80,
+      "pagoCompleto": true
     }
   ],
   "meta": {
