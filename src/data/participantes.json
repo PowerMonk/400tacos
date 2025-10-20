@@ -161,6 +161,15 @@
       "debe": 150,
       "pagado": 150,
       "pagoCompleto": true
+    },
+    {
+      "id": 19,
+      "nombre": "Sopillo",
+      "tipo": "estudiante",
+      "tacos": 10,
+      "debe": 100,
+      "pagado": 100,
+      "pagoCompleto": true
     }
   ],
   "meta": {
