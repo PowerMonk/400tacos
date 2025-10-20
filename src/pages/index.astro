@@ -15,6 +15,9 @@ const participantesCompletos = participantes.filter(
   (p) => p.pagoCompleto
 ).length;
 const faltantePorRecaudar = meta.objetivoTotal - totalRecaudado;
+const totalTacosEstudiantes = participantes
+  .filter((p) => p.tipo === "estudiante")
+  .reduce((sum, p) => sum + (p.tacos || 0), 0);
 ---
 
 <html lang="es">
@@ -102,7 +105,7 @@ const faltantePorRecaudar = meta.objetivoTotal - totalRecaudado;
         <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
           Estadísticas
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
             titulo="Total Participantes"
             valor={participantes.length}
@@ -114,6 +117,12 @@ const faltantePorRecaudar = meta.objetivoTotal - totalRecaudado;
             valor={participantesCompletos}
             icono="✅"
             color="green"
+          />
+          <StatCard
+            titulo="Total de Tacos"
+            valor={totalTacosEstudiantes}
+            icono="🌮"
+            color="orange"
           />
           <StatCard
             titulo="Faltante por Recaudar"
