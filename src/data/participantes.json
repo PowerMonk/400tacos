@@ -157,9 +157,9 @@
       "id": 18,
       "nombre": "Martin",
       "tipo": "estudiante",
-      "tacos": 15,
-      "debe": 150,
-      "pagado": 150,
+      "tacos": 18,
+      "debe": 180,
+      "pagado": 180,
       "pagoCompleto": true
     },
     {
