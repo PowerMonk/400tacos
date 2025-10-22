@@ -188,6 +188,33 @@
       "debe": 200,
       "pagado": 200,
       "pagoCompleto": true
+    },
+    {
+      "id": 22,
+      "nombre": "Profe Naim",
+      "tipo": "profesor",
+      "cooperacion": 50,
+      "pagado": 50,
+      "debe": 0,
+      "pagoCompleto": true
+    },
+    {
+      "id": 23,
+      "nombre": "Mancegod",
+      "tipo": "profesor",
+      "cooperacion": 50,
+      "pagado": 50,
+      "debe": 0,
+      "pagoCompleto": true
+    },
+    {
+      "id": 24,
+      "nombre": "Netzy",
+      "tipo": "profesor",
+      "cooperacion": 50,
+      "pagado": 50,
+      "debe": 0,
+      "pagoCompleto": true
     }
   ],
   "meta": {
